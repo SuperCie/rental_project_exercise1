@@ -37,6 +37,7 @@ dependencies:
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.0+3
   provider: ^6.1.2
+  collection: ^1.19.0
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,33 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/image/
+    - assets/image/bike/zx25r.jpg
+    - assets/image/bike/z900.jpeg
+    - assets/image/bike/xsr155.png
+    - assets/image/bike/xmax.png
+    - assets/image/bike/vario160.jpeg
+    - assets/image/bike/vario125.jpeg
+    - assets/image/bike/nmaxturbo.png
+    - assets/image/bike/nmax.png
+    - assets/image/bike/mt25.png
+    - assets/image/bike/miogt.jpeg
+    - assets/image/bike/hondabeat.jpeg
+    - assets/image/bike/filanopink.png
+    - assets/image/bike/cbr1000r.jpeg
+    - assets/image/bike/cbr150r.jpeg
+    - assets/image/bike/cbr250rr.jpeg
+    - assets/image/bike/beatstreet.jpeg
+    - assets/image/bike/aerox.png
+    - assets/image/car/alphard.jpeg
+    - assets/image/car/bmw.jpeg
+    - assets/image/car/brio.jpeg
+    - assets/image/car/fortuner.jpeg
+    - assets/image/car/innova.jpeg
+    - assets/image/car/jazz.jpeg
+    - assets/image/car/mustang.jpeg
+    - assets/image/car/pajero.jpeg
+    - assets/image/car/raize.jpeg
+    - assets/image/car/zenix.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
