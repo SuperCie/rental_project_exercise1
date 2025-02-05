@@ -38,6 +38,8 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   provider: ^6.1.2
   collection: ^1.19.0
+  google_nav_bar: ^5.0.7
+  date_ranger: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +93,7 @@ flutter:
     - assets/image/car/pajero.jpeg
     - assets/image/car/raize.jpeg
     - assets/image/car/zenix.jpeg
+    - assets/image/dealcar.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

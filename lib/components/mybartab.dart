@@ -13,11 +13,11 @@ class Mybartab extends SliverPersistentHeaderDelegate {
 
         return Container(
           decoration: BoxDecoration(
-            color: isSelectedIndex ? Colors.yellowAccent : Colors.white,
+            color: isSelectedIndex ? Colors.white : Colors.indigo.shade200,
             borderRadius: BorderRadius.circular(8),
           ),
-          width: 100,
-          padding: EdgeInsets.all(5),
+          width: 105,
+          padding: EdgeInsets.all(10),
           child: Tab(
             text: category.toString().split('.').last,
           ),
@@ -30,7 +30,7 @@ class Mybartab extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Padding(
-      padding: EdgeInsets.only(top: 30),
+      padding: EdgeInsets.all(12),
       child: TabBar(
         dividerColor: Colors.transparent,
         physics: BouncingScrollPhysics(),

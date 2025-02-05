@@ -1,6 +1,6 @@
 import 'package:balirental_project1/components/mybutton.dart';
 import 'package:balirental_project1/components/mytextfield.dart';
-import 'package:balirental_project1/pages/home_page.dart';
+import 'package:balirental_project1/pages/pagecontrol.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => Pagecontrol(),
         ));
   }
 

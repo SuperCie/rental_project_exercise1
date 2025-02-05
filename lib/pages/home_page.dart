@@ -3,6 +3,8 @@ import 'package:balirental_project1/components/data/transportation.dart';
 import 'package:balirental_project1/components/mybartab.dart';
 import 'package:balirental_project1/components/mycardtile.dart';
 import 'package:balirental_project1/components/mysliverappbar.dart';
+import 'package:balirental_project1/pages/cartpage.dart';
+import 'package:balirental_project1/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +62,15 @@ class _HomePageState extends State<HomePage>
             final transportation = categoryList[index];
             return Mycardtile(
               transportation: transportation,
-              ontap: () {},
+              ontap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VehiclePage(
+                        transportation: transportation,
+                      ),
+                    ));
+              },
             );
           },
         );
@@ -68,25 +78,71 @@ class _HomePageState extends State<HomePage>
     ).toList();
   }
 
-  // untuk perpindahan page
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.indigo.shade200,
+          actions: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 12, right: 12),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      hintText: 'Search..',
+                      prefixIcon: Icon(Icons.search),
+                      filled: true,
+                      fillColor: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: CircleAvatar(
+                  radius: 25,
+                  backgroundColor: Colors.grey.shade100,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Cartpage(),
+                          ));
+                    },
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.black,
+                    ),
+                  )),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.grey.shade200,
       body: NestedScrollView(
-          headerSliverBuilder:
-              (BuildContext context, bool innerBoxIsScrolled) => [
-                    Mysliverappbar(),
-                    SliverPersistentHeader(
-                        delegate: Mybartab(tabController: _tabController))
-                  ],
-          body: Consumer<Catalog>(
-            builder: (context, catalogs, child) => TabBarView(
-              controller: _tabController,
-              children: getFilterMenu(catalogs.menu),
-            ),
-          )),
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
+            [
+          Mysliverappbar(),
+          SliverPersistentHeader(
+            delegate: Mybartab(tabController: _tabController),
+          ),
+        ],
+        body: Consumer<Catalog>(
+          builder: (context, catalogs, child) => TabBarView(
+            controller: _tabController,
+            children: getFilterMenu(catalogs.menu),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -56,7 +56,7 @@ class _MycarouselState extends State<Mycarousel> {
             effect: WormEffect(
                 dotHeight: 8,
                 dotWidth: 8,
-                activeDotColor: Colors.yellowAccent,
+                activeDotColor: Colors.blueGrey,
                 dotColor: Colors.grey),
           ),
         )

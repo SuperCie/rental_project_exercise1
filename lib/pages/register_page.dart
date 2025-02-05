@@ -1,7 +1,7 @@
 import 'package:balirental_project1/components/mybutton.dart';
 import 'package:balirental_project1/components/mypolicy.dart';
 import 'package:balirental_project1/components/mytextfield.dart';
-import 'package:balirental_project1/pages/home_page.dart';
+import 'package:balirental_project1/pages/pagecontrol.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -25,7 +25,7 @@ class RegisterPage extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => Pagecontrol(),
         ));
   }
 

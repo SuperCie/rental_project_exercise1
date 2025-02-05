@@ -12,35 +12,41 @@ class Mycardtile extends StatelessWidget {
       onTap: ontap,
       child: Column(
         children: [
-          Card(
-            color: Colors.white,
-            child: Column(
-              children: [
-                //image
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      topRight: Radius.circular(12)),
-                  child: Image.asset(
-                    transportation.imagePath,
-                    width: double.infinity,
-                    height: 120,
-                    fit: BoxFit.cover,
+          SizedBox(
+            height: 5,
+          ),
+          GestureDetector(
+            onTap: ontap,
+            child: Card(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  //image
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12)),
+                    child: Image.asset(
+                      transportation.imagePath,
+                      width: double.infinity,
+                      height: 120,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                //name
-                Text(
-                  transportation.name,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  overflow: TextOverflow.ellipsis,
-                ),
-                //price
-                Text('\$${transportation.price}'),
-              ],
+                  //name
+                  Text(
+                    transportation.name,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  //price
+                  Text('\$${transportation.price}'),
+                ],
+              ),
             ),
           ),
           Divider(
-            height: 5,
+            height: 10,
             color: Colors.transparent,
           )
         ],
