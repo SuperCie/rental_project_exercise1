@@ -75,7 +75,9 @@ class _VehiclePageState extends State<VehiclePage> {
                         ),
                         Mybutton(
                           text: 'Book Now',
+                          width: double.infinity,
                           ontap: () {
+                            Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

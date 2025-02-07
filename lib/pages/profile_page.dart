@@ -1,3 +1,5 @@
+import 'package:balirental_project1/pages/policy_page.dart';
+import 'package:balirental_project1/pages/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -106,31 +108,49 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   // privacy policy
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    margin: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white),
-                    child: ListTile(
-                      leading: Icon(Icons.lock),
-                      title: Text('Privacy Policy',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PolicyPage(),
+                          ));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      margin: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white),
+                      child: ListTile(
+                        leading: Icon(Icons.lock),
+                        title: Text('Privacy Policy',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        trailing: Icon(Icons.arrow_forward_ios_rounded),
+                      ),
                     ),
                   ),
                   // settings
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    margin: EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white),
-                    child: ListTile(
-                      leading: Icon(Icons.settings),
-                      title: Text('Settings',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      trailing: Icon(Icons.arrow_forward_ios_rounded),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SettingsPage(),
+                          ));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      margin: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white),
+                      child: ListTile(
+                        leading: Icon(Icons.settings),
+                        title: Text('Settings',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        trailing: Icon(Icons.arrow_forward_ios_rounded),
+                      ),
                     ),
                   ),
                   // delete account

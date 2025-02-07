@@ -17,7 +17,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  TextEditingController searchController = TextEditingController();
   late TabController _tabController;
+
+  //search menu list
+  List<Transportation> searchedMenu = [];
 
 // untuk menginilisasi jumlah tabcontroller dan menghubungkan tabcontroller dengan tickerprovider untuk memastikan animasi bekerja dengan lancar
   @override
@@ -27,6 +31,8 @@ class _HomePageState extends State<HomePage>
       length: transportationCategory.values.length,
       vsync: this,
     );
+
+    searchedMenu = context.read<Catalog>().menu;
   }
 
 // membersihkan cache animasi saat widget tidak dipakai agar tidak terjadi memory leaks
@@ -44,12 +50,28 @@ class _HomePageState extends State<HomePage>
         .toList();
   }
 
+//search
+  void searchItems(String query, List<Transportation> fullMenu) {
+    if (query.isEmpty) {
+      setState(() {
+        searchedMenu = fullMenu;
+      });
+    } else {
+      setState(() {
+        searchedMenu = fullMenu
+            .where(
+                (item) => item.name.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      });
+    }
+  }
+
 // list dari menu transportasi
   List<Widget> getFilterMenu(List<Transportation> fullMenu) {
     return transportationCategory.values.map(
       (category) {
         List<Transportation> categoryList =
-            _filterMenuCategory(category, fullMenu);
+            _filterMenuCategory(category, searchedMenu);
 
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -81,68 +103,77 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70),
-        child: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.indigo.shade200,
-          actions: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 12),
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      hintText: 'Search..',
-                      prefixIcon: Icon(Icons.search),
-                      filled: true,
-                      fillColor: Colors.white),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(70),
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.indigo.shade200,
+            actions: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        hintText: 'Search..',
+                        prefixIcon: Icon(Icons.search),
+                        filled: true,
+                        fillColor: Colors.white),
+                    onChanged: (value) {
+                      searchItems(value, context.read<Catalog>().menu);
+                    },
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: Colors.grey.shade100,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Cartpage(),
-                          ));
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.black,
-                    ),
-                  )),
-            ),
-          ],
-        ),
-      ),
-      backgroundColor: Colors.grey.shade200,
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) =>
-            [
-          Mysliverappbar(),
-          SliverPersistentHeader(
-            delegate: Mybartab(tabController: _tabController),
+              SizedBox(
+                width: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.grey.shade100,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Cartpage(),
+                            ));
+                      },
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.black,
+                      ),
+                    )),
+              ),
+            ],
           ),
-        ],
+        ),
+        backgroundColor: Colors.grey.shade200,
         body: Consumer<Catalog>(
-          builder: (context, catalogs, child) => TabBarView(
-            controller: _tabController,
-            children: getFilterMenu(catalogs.menu),
-          ),
-        ),
-      ),
-    );
+          builder: (context, catalogs, child) {
+            if (searchedMenu.isEmpty) {
+              searchedMenu = catalogs
+                  .menu; // Menampilkan seluruh data jika belum ada filter
+            }
+
+            return NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) => [
+                Mysliverappbar(),
+                SliverPersistentHeader(
+                  delegate: Mybartab(tabController: _tabController),
+                ),
+              ],
+              body: TabBarView(
+                controller: _tabController,
+                children: getFilterMenu(catalogs.menu),
+              ),
+            );
+          },
+        ));
   }
 }

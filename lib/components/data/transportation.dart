@@ -13,4 +13,4 @@ class Transportation {
       required this.description});
 }
 
-enum transportationCategory { motorBike, superBike, car, sportCar }
+enum transportationCategory { bike, car }

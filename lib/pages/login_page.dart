@@ -85,6 +85,7 @@ class LoginPage extends StatelessWidget {
                 children: [
                   // Login Button
                   Mybutton(
+                    width: double.infinity,
                     text: 'L O G I N',
                     ontap: () => login(context),
                   ),

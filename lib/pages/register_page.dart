@@ -99,6 +99,7 @@ class RegisterPage extends StatelessWidget {
                   children: [
                     // Register Button
                     Mybutton(
+                      width: double.infinity,
                       text: 'R E G I S T E R',
                       ontap: () => register(context),
                     ),

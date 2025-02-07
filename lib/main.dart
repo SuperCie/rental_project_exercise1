@@ -1,13 +1,23 @@
 import 'package:balirental_project1/components/data/catalog.dart';
+import 'package:balirental_project1/components/data/order.dart';
 import 'package:balirental_project1/pages/loginorregist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => Catalog(),
-    child: TropicGo(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Catalog(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => OrderHistoryProvider(),
+        )
+      ],
+      child: TropicGo(),
+    ),
+  );
 }
 
 class TropicGo extends StatelessWidget {

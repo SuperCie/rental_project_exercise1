@@ -16,7 +16,7 @@ class Vehiclecarttile extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(width: 1.0)),
-          margin: const EdgeInsets.all(25),
+          margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,9 +45,14 @@ class Vehiclecarttile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${cartItem.days} Days'),
+                  Text(
+                    'Rent total : ${cartItem.days} Days',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   IconButton(
-                      onPressed: catalog.dispose,
+                      onPressed: () {
+                        catalog.removeFromCart(cartItem);
+                      },
                       icon: Icon(Icons.delete_forever))
                 ],
               ),

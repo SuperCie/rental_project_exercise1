@@ -1,9 +1,12 @@
 import 'package:balirental_project1/components/data/cartitem.dart';
+import 'package:balirental_project1/components/data/order.dart';
 import 'package:balirental_project1/components/data/transportation.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Catalog extends ChangeNotifier {
+  double discountPercentage = 10.0;
 //list menu
   final List<Transportation> _menu = [
     //bike
@@ -13,112 +16,112 @@ class Catalog extends ChangeNotifier {
         price: 750,
         description:
             'Kawasaki ZX-25R adalah motor sport 250cc dengan mesin 4-silinder, memberikan performa tinggi dan kontrol maksimal. Dilengkapi dengan suspensi depan USD, ABS, dan desain agresif, ZX-25R cocok untuk pengendara yang menginginkan kecepatan dan kestabilan, baik di jalan raya maupun trek balap.',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Kawasaki Z900',
         imagePath: 'assets/image/bike/z900.jpeg',
         price: 2500,
         description:
             'Kawasaki Z900 adalah motor naked bike 900cc dengan mesin 4-silinder yang bertenaga. Dikenal dengan desain tajam dan agresif, Z900 menawarkan performa tinggi, kestabilan, dan kenyamanan untuk berkendara di jalan raya. Ideal untuk pengendara yang mencari motor sporty dengan kontrol yang responsif dan tampilan modern.',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'XSR 155',
         imagePath: 'assets/image/bike/xsr155.png',
         price: 200,
         description:
             'Yamaha XSR 155 adalah motor retro modern 155cc dengan desain klasik yang dipadukan teknologi canggih. Ditenagai mesin SOHC, XSR 155 menawarkan kenyamanan dan performa yang stabil, cocok untuk pengendara yang menginginkan gaya dan kepraktisan dalam satu paket.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'X-MAX',
         imagePath: 'assets/image/bike/xmax.png',
         price: 250,
         description:
             'Yamaha X-MAX adalah skuter maxi 250cc yang menawarkan kenyamanan dan performa tinggi. Dengan desain elegan dan fitur canggih seperti ABS, X-MAX cocok untuk perjalanan jarak jauh maupun perkotaan, memberikan pengalaman berkendara yang stabil dan penuh gaya',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Vario 160',
         imagePath: 'assets/image/bike/vario160.jpeg',
         price: 110,
         description:
             'Honda Vario 160 adalah skuter 160cc yang sporty dengan desain modern dan compact. Ditenagai mesin efisien, Vario 160 menawarkan performa cepat dan nyaman, cocok untuk berkendara di perkotaan dengan fitur canggih seperti Smart Key dan suspensi yang stabil.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Vario 125',
         imagePath: 'assets/image/bike/vario125.jpeg',
         price: 90,
         description:
             'Honda Vario 125 adalah skuter matik 125cc yang stylish dan efisien. Dengan desain modern dan mesin handal, Vario 125 menawarkan kenyamanan berkendara di perkotaan dengan performa yang responsif dan hemat bahan bakar.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'New N-Max Turbo',
         imagePath: 'assets/image/bike/nmaxturbo.png',
         price: 150,
         description:
             'Yamaha New NMAX Turbo adalah skuter maxi dengan mesin 155cc yang dilengkapi teknologi turbo untuk performa lebih tinggi. Desain elegan dan fitur canggih seperti keyless system, menjadikan NMAX Turbo pilihan ideal untuk perjalanan jarak jauh dan perkotaan',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'New N-Max',
         imagePath: 'assets/image/bike/nmax.png',
         price: 125,
         description:
             'Yamaha New NMAX 155cc adalah skuter premium dengan desain modern dan fitur canggih. Dikenal dengan kenyamanan berkendara dan performa optimal, NMAX ideal untuk pengendara yang membutuhkan skuter dengan kecepatan dan efisiensi bahan bakar.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'MT-25',
         imagePath: 'assets/image/bike/mt25.png',
         price: 225,
         description:
             'Yamaha MT-25 adalah motor naked bike 250cc dengan desain agresif dan mesin bertenaga. Dikenal dengan handling yang tajam, MT-25 menawarkan pengalaman berkendara yang responsif dan nyaman di berbagai kondisi jalan.',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Mio GT',
         imagePath: 'assets/image/bike/miogt.jpeg',
         price: 75,
         description:
             'Yamaha Mio GT adalah skuter 125cc dengan desain sporty dan kompak. Ditenagai mesin efisien, Mio GT cocok untuk perjalanan perkotaan, menawarkan kenyamanan dan kemudahan berkendara dengan konsumsi bahan bakar yang hemat.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Beat',
         imagePath: 'assets/image/bike/hondabeat.jpeg',
         price: 90,
         description:
             'Honda Beat adalah skuter 110cc yang compact dan praktis. Dengan desain minimalis dan mesin irit, Beat cocok untuk pengendara muda yang mencari motor untuk mobilitas sehari-hari dengan efisiensi tinggi dan tampilan stylish.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'New BeatStreet',
         imagePath: 'assets/image/bike/beatstreet.jpeg',
         price: 100,
         description:
             'Honda New Beatstreet adalah varian skuter 110cc dengan desain street style yang kekinian. Dengan performa mesin efisien dan handling yang ringan, Beatstreet cocok untuk pengendara yang mengutamakan gaya dan kenyamanan berkendara.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'Filano',
         imagePath: 'assets/image/bike/filanopink.png',
         price: 105,
         description:
             'Yamaha Filano adalah skuter elegan 125cc dengan desain retro modern. Ditenagai mesin efisien, Filano menawarkan kenyamanan dalam berkendara dengan fitur canggih seperti lampu LED dan panel digital, ideal untuk perjalanan perkotaan.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'CBR1000R SP',
         imagePath: 'assets/image/bike/cbr1000r.jpeg',
         price: 3000,
         description:
             'Honda CBR1000RR SP adalah motor sport 1000cc yang menawarkan performa luar biasa di trek dan jalan raya. Dikenal dengan teknologi canggih seperti sistem suspensi elektronik, CBR1000RR SP memberikan pengalaman balap yang optimal dan handling presisi.',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'CBR250RR',
         imagePath: 'assets/image/bike/cbr250rr.jpeg',
         price: 250,
         description:
             'onda CBR250RR adalah motor sport 250cc dengan mesin DOHC yang bertenaga. Dengan desain agresif dan fitur canggih, CBR250RR memberikan performa tinggi serta kontrol yang presisi, cocok untuk pengendara yang menginginkan sensasi berkendara di trek dan jalan raya.',
-        category: transportationCategory.superBike),
+        category: transportationCategory.bike),
     Transportation(
         name: 'New Aerox',
         imagePath: 'assets/image/bike/aerox.png',
         price: 150,
         description:
             'Yamaha New Aerox adalah skuter sporty 155cc dengan desain tajam dan performa tinggi. Dilengkapi dengan teknologi VVA dan fitur-fitur canggih, Aerox memberikan pengalaman berkendara yang nyaman dan cepat di jalan perkotaan.',
-        category: transportationCategory.motorBike),
+        category: transportationCategory.bike),
 
     // car
     Transportation(
@@ -127,14 +130,14 @@ class Catalog extends ChangeNotifier {
         price: 3700,
         description:
             'Toyota Alphard adalah MPV premium yang menawarkan kenyamanan luar biasa dengan desain elegan dan ruang kabin yang luas. Dilengkapi dengan fitur canggih dan teknologi hiburan, Alphard memberikan pengalaman berkendara mewah bagi pengemudi dan penumpang.',
-        category: transportationCategory.sportCar),
+        category: transportationCategory.car),
     Transportation(
         name: 'BMW M2',
         imagePath: 'assets/image/car/bmw.jpeg',
         price: 4500,
         description:
             'BMW M2 adalah mobil sport kompak dengan mesin bertenaga tinggi dan desain agresif. Menyediakan performa yang luar biasa, M2 dirancang untuk pengemudi yang menginginkan sensasi berkendara dinamis dengan kontrol presisi dan akselerasi cepat.',
-        category: transportationCategory.sportCar),
+        category: transportationCategory.car),
     Transportation(
         name: 'Brio',
         imagePath: 'assets/image/car/brio.jpeg',
@@ -169,7 +172,7 @@ class Catalog extends ChangeNotifier {
         price: 4000,
         description:
             'Ford Mustang adalah mobil sport ikonik dengan mesin bertenaga tinggi dan desain agresif. Memberikan sensasi berkendara luar biasa, Mustang cocok bagi penggemar kecepatan dan performa tinggi, menawarkan pengalaman berkendara yang tak terlupakan.',
-        category: transportationCategory.sportCar),
+        category: transportationCategory.car),
     Transportation(
         name: 'Pajero',
         imagePath: 'assets/image/car/pajero.jpeg',
@@ -193,6 +196,26 @@ class Catalog extends ChangeNotifier {
         category: transportationCategory.car),
   ];
 
+  // user input data
+  String deliveryAddress = '';
+  String returnAddress = '';
+  String helm = '';
+  String note = '';
+
+// Update user input data
+  void updateUserInputData(
+    String deliveryadd,
+    String returnadd,
+    String helmdata,
+    String notedata,
+  ) {
+    deliveryAddress = deliveryadd;
+    returnAddress = returnadd;
+    helm = helmdata;
+    note = notedata;
+    notifyListeners();
+  }
+
   // get menu
   List<Transportation> get menu => _menu;
   // get cart
@@ -201,7 +224,8 @@ class Catalog extends ChangeNotifier {
   //get user cart
   List<Cartitem> get cart => _cart;
 // add to cart function
-  void addtoCart(Transportation transportation, int days) {
+  void addtoCart(Transportation transportation, int days, DateTime startDate,
+      DateTime endDate) {
     Cartitem? cartItem = _cart.firstWhereOrNull(
       (item) {
         return item.transportation == transportation;
@@ -211,8 +235,27 @@ class Catalog extends ChangeNotifier {
     if (cartItem != null) {
       cartItem.days += days;
     } else {
-      _cart.add(Cartitem(transportation: transportation, days: days));
+      _cart.add(Cartitem(
+        transportation: transportation,
+        days: days,
+        startDate: startDate,
+        endDate: endDate,
+      ));
     }
+    notifyListeners();
+  }
+
+  // add to history function
+  void confirmOrder(BuildContext context) {
+    final orderHistoryProvider = Provider.of<OrderHistoryProvider>(context,
+        listen: false); //fetch the order history provider
+
+    for (var cartItem in _cart) {
+      orderHistoryProvider.addconfirmedOrder(
+          cartItem); // add each cart item to the order history
+    }
+
+    _cart.clear(); // clear cart after confirmed
     notifyListeners();
   }
 
@@ -239,6 +282,20 @@ class Catalog extends ChangeNotifier {
     return total;
   }
 
+  // Menghitung diskon
+  double getDiscountAmount() {
+    double subtotal = getTotalPrice();
+    return subtotal *
+        (discountPercentage / 100); // Hitung diskon berdasarkan persen
+  }
+
+  // Menghitung total setelah diskon
+  double getTotalAfterDiscount() {
+    double subtotal = getTotalPrice();
+    double discountAmount = getDiscountAmount();
+    return subtotal - discountAmount; // Total setelah dikurangi diskon
+  }
+
 // get total item count
   int totalItemCount() {
     return _cart.length;
@@ -249,6 +306,4 @@ class Catalog extends ChangeNotifier {
     _cart.clear();
     notifyListeners();
   }
-
-// format double value into money
 }
