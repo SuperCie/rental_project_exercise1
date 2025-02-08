@@ -1,7 +1,9 @@
 import 'package:balirental_project1/components/mybutton.dart';
 import 'package:balirental_project1/components/mypolicy.dart';
 import 'package:balirental_project1/components/mytextfield.dart';
-import 'package:balirental_project1/pages/pagecontrol.dart';
+import 'package:balirental_project1/components/support/authgate.dart';
+import 'package:balirental_project1/components/support/displaymessageuser.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -10,28 +12,63 @@ class RegisterPage extends StatelessWidget {
 
   TextEditingController nameControler = TextEditingController();
 
-  TextEditingController usernameControler = TextEditingController();
-
-  TextEditingController pnController = TextEditingController();
-
-  TextEditingController emailControler = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   TextEditingController pwControler = TextEditingController();
 
   TextEditingController cpwControler = TextEditingController();
 
-  void register(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Pagecontrol(),
-        ));
+  void register(context) async {
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+    // check if passwords match
+    if (pwControler.text != cpwControler.text) {
+      displayMessageUser("Password do not match", context);
+      return;
+    }
+
+    try {
+      //create user with email and password
+      UserCredential credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: pwControler.text);
+
+      // after user is created, update the displayName
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        //update the display name
+        await user.updateProfile(displayName: nameControler.text);
+        await user.reload(); //reload user to get the updated data
+
+        //success message
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("User successfuly registered"),
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        // navigate to page
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Authgate(),
+            ));
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      displayMessageUser("Error: ${e.message}", context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(25.0),
@@ -62,7 +99,9 @@ class RegisterPage extends StatelessWidget {
                     ),
                     Text(
                       'Register into your account',
-                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).colorScheme.tertiary),
                     ),
                     SizedBox(
                       height: 15,
@@ -74,15 +113,10 @@ class RegisterPage extends StatelessWidget {
                       obscureText: false,
                     ),
                     Mytextfield(
-                      controller: usernameControler,
-                      text: 'Username',
-                      obscureText: true,
+                      controller: emailController,
+                      text: 'Email',
+                      obscureText: false,
                     ),
-                    Mytextfield(
-                        controller: pnController,
-                        text: 'Phone Number',
-                        obscureText: false,
-                        keyboardType: TextInputType.number),
                     Mytextfield(
                         controller: pwControler,
                         text: 'Password',

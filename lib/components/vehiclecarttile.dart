@@ -13,7 +13,7 @@ class Vehiclecarttile extends StatelessWidget {
       builder: (context, catalog, child) => SafeArea(
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(width: 1.0)),
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
@@ -40,7 +40,6 @@ class Vehiclecarttile extends StatelessWidget {
               Divider(
                 height: 10,
                 thickness: 1,
-                color: Colors.black,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

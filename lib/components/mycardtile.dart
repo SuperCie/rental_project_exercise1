@@ -18,7 +18,7 @@ class Mycardtile extends StatelessWidget {
           GestureDetector(
             onTap: ontap,
             child: Card(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.secondary,
               child: Column(
                 children: [
                   //image

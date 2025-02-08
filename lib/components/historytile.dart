@@ -10,13 +10,11 @@ class Historytile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double discountPercentage = 10.0;
-
     return Consumer<Catalog>(
       builder: (context, catalog, child) => SafeArea(
           child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(8),
         ),
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 5),

@@ -13,9 +13,9 @@ class OrderHistory extends StatelessWidget {
         final orderHistory = value.orderHistory;
 
         return Scaffold(
-            backgroundColor: Colors.grey.shade200,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             appBar: AppBar(
-              backgroundColor: Colors.indigo.shade200,
+              backgroundColor: Theme.of(context).colorScheme.primary,
               automaticallyImplyLeading: false,
               centerTitle: true,
               title: Text(
@@ -27,7 +27,7 @@ class OrderHistory extends StatelessWidget {
             ),
             body: orderHistory.isEmpty
                 ? Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -45,12 +45,16 @@ class OrderHistory extends StatelessWidget {
                       ],
                     ),
                   )
-                : ListView.builder(
-                    itemCount: orderHistory.length,
-                    itemBuilder: (context, index) {
-                      final cartItem = orderHistory[index];
-                      return Historytile(cartItem: cartItem);
-                    },
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 24),
+                    child: ListView.builder(
+                      itemCount: orderHistory.length,
+                      itemBuilder: (context, index) {
+                        final cartItem = orderHistory[index];
+                        return Historytile(cartItem: cartItem);
+                      },
+                    ),
                   ));
       },
     );

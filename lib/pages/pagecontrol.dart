@@ -32,14 +32,14 @@ class _PagecontrolState extends State<Pagecontrol> {
     return Scaffold(
       body: pageOptionIndex[currentPageIndex],
       bottomNavigationBar: Container(
-        color: Colors.indigo.shade200,
+        color: Theme.of(context).colorScheme.primary,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           child: GNav(
               curve: Curves.fastOutSlowIn,
-              rippleColor: Colors.grey.shade200,
+              rippleColor: Theme.of(context).colorScheme.surface,
               haptic: true,
-              tabBackgroundColor: Colors.white,
+              tabBackgroundColor: Theme.of(context).colorScheme.secondary,
               backgroundColor: Colors.transparent,
               iconSize: 25,
               padding: EdgeInsets.all(20),

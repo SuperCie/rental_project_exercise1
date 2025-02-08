@@ -36,21 +36,21 @@ class _CartpageState extends State<Cartpage> {
             appBar: AppBar(
               title: Text('Cart'),
               centerTitle: true,
-              backgroundColor: Colors.indigo.shade200,
+              backgroundColor: Theme.of(context).colorScheme.primary,
             ),
             body: Center(child: Text('Your cart is empty!')),
           );
         }
         //UI
         return Scaffold(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
             title: Text(
               'Cart',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             centerTitle: true,
-            backgroundColor: Colors.indigo.shade200,
+            backgroundColor: Theme.of(context).colorScheme.primary,
           ),
           body: SingleChildScrollView(
             child: Form(
@@ -91,7 +91,6 @@ class _CartpageState extends State<Cartpage> {
                     child: Divider(
                       height: 20,
                       thickness: 1,
-                      color: Colors.black,
                     ),
                   ),
                   Padding(
@@ -172,12 +171,11 @@ class _CartpageState extends State<Cartpage> {
                         Divider(
                           height: 20,
                           thickness: 1,
-                          color: Colors.black,
                         ),
                         Container(
                           padding: EdgeInsets.all(12),
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.secondary,
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(width: 1.0)),
                           height: 120,

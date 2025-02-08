@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669775987132",
+    "project_id": "rentalappexercise",
+    "storage_bucket": "rentalappexercise.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669775987132:android:b17505ad479ae678d8abb9",
+        "android_client_info": {
+          "package_name": "com.example.balirental_project1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXo_KiUE2ArfgajGEmkAbJSOEwep6LjFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

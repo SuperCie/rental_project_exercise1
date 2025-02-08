@@ -6,14 +6,14 @@ class PolicyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           'RENTAL POLICY',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.indigo.shade200,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

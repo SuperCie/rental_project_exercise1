@@ -9,11 +9,11 @@ class Mybartab extends SliverPersistentHeaderDelegate {
     return transportationCategory.values.map(
       (category) {
         int index = transportationCategory.values.toList().indexOf(category);
-        bool isSelectedIndex = tabController.index == index;
+        tabController.index == index;
 
         return Container(
           decoration: BoxDecoration(
-            color: isSelectedIndex ? Colors.white : Colors.indigo.shade200,
+            color: Colors.teal,
             borderRadius: BorderRadius.circular(8),
           ),
           width: 105,
@@ -36,7 +36,7 @@ class Mybartab extends SliverPersistentHeaderDelegate {
         physics: BouncingScrollPhysics(),
         indicatorColor: Colors.transparent,
         labelStyle: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
+            fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
         tabs: _categoryTabs(),
         controller: tabController,
         isScrollable: true,
@@ -53,6 +53,6 @@ class Mybartab extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }

@@ -41,6 +41,9 @@ dependencies:
   google_nav_bar: ^5.0.7
   date_ranger: ^1.1.0
   intl: ^0.19.0
+  firebase_core: ^3.11.0
+  firebase: ^9.0.3
+  firebase_auth: ^5.4.2
 
 dev_dependencies:
   flutter_test:

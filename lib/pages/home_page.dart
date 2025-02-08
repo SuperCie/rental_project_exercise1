@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage>
           preferredSize: Size.fromHeight(70),
           child: AppBar(
             elevation: 0,
-            backgroundColor: Colors.indigo.shade200,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             actions: [
               Expanded(
                 child: Padding(
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage>
                         hintText: 'Search..',
                         prefixIcon: Icon(Icons.search),
                         filled: true,
-                        fillColor: Colors.white),
+                        fillColor: Theme.of(context).colorScheme.secondary),
                     onChanged: (value) {
                       searchItems(value, context.read<Catalog>().menu);
                     },
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage>
                 padding: const EdgeInsets.only(right: 12),
                 child: CircleAvatar(
                     radius: 25,
-                    backgroundColor: Colors.grey.shade100,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
                     child: IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -145,14 +145,14 @@ class _HomePageState extends State<HomePage>
                       },
                       icon: Icon(
                         Icons.shopping_cart,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                     )),
               ),
             ],
           ),
         ),
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: Consumer<Catalog>(
           builder: (context, catalogs, child) {
             if (searchedMenu.isEmpty) {

@@ -1,7 +1,6 @@
 import 'package:balirental_project1/components/data/catalog.dart';
 import 'package:balirental_project1/components/mybutton.dart';
 import 'package:balirental_project1/components/mysummarytile.dart';
-import 'package:balirental_project1/pages/history_page.dart';
 import 'package:balirental_project1/pages/pagecontrol.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,7 @@ class SummaryorderPage extends StatelessWidget {
         //panggil user cart nya
         final userCart = context.watch<Catalog>();
         return Scaffold(
-          backgroundColor: Colors.grey.shade200,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -112,7 +111,7 @@ class SummaryorderPage extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                   boxShadow: [
                     BoxShadow(

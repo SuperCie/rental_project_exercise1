@@ -1,6 +1,6 @@
 import 'package:balirental_project1/components/mybutton.dart';
 import 'package:balirental_project1/components/mytextfield.dart';
-import 'package:balirental_project1/pages/pagecontrol.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -11,13 +11,31 @@ class LoginPage extends StatelessWidget {
 
   TextEditingController pwControler = TextEditingController();
 
-  void login(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Pagecontrol(),
-        ));
+  void login(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailControler.text, password: pwControler.text);
+      if (context.mounted) Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Login successfuly"),
+        backgroundColor: Colors.green,
+      ));
+    } catch (e) {
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
   }
 
   @override
@@ -51,7 +69,9 @@ class LoginPage extends StatelessWidget {
                   ),
                   Text(
                     'Sign into your account',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.tertiary),
                   ),
                   SizedBox(
                     height: 15,

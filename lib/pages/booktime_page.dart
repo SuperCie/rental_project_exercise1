@@ -59,7 +59,7 @@ class _BooktimePageState extends State<BooktimePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
@@ -67,7 +67,7 @@ class _BooktimePageState extends State<BooktimePage> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        backgroundColor: Colors.indigo.shade200,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -102,7 +102,7 @@ class _BooktimePageState extends State<BooktimePage> {
                             decoration: BoxDecoration(
                               border: Border.all(width: 1.0),
                               borderRadius: BorderRadius.circular(8),
-                              color: Colors.white,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                             padding: EdgeInsets.all(12),
                             child: Column(
@@ -126,7 +126,7 @@ class _BooktimePageState extends State<BooktimePage> {
                             width: 150,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.secondary,
                                 border: Border.all(width: 1.0)),
                             padding: EdgeInsets.all(10),
                             child: Column(
